@@ -1,0 +1,54 @@
+.Login {
+    display: grid;
+    place-items: center;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.Login img {
+    object-fit: contain;
+    height: 70px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.Login form {
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+.Login form input {
+    width: 350px;
+    height: 50px;
+    font-size: 20px;
+    padding-left: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.Login button {
+    background-color: skyblue;
+    height: 30px;
+    width: 140px;
+    margin: auto;
+    border-radius: 35px;
+    cursor: pointer;
+
+}
+
+.Login button:hover {
+    background-color: blue;
+    color: white;
+}
+
+.Login span {
+    cursor: pointer;
+    color: blue;
+
+}
+
+.Login p {
+    margin-top: 20px;
+}
