@@ -9,38 +9,44 @@ import Feed from './Feed';
 import { login, logout, selectUser } from './features/userSlice';
 import Login from './Login';
 import { auth } from './firebaseApp';
+import Widget from './Widget';
 
 
 function App() {
 
   const user = useSelector(selectUser)
-  // const dispatch = useDispatch()
-  // useEffect(() => {
-  //   auth.onAuthStateChanged(userAuth => {
-  //     if (userAuth) {
-  //       dispatch(login({
-  //         email: userAuth.email,
-  //         uid: userAuth.uid,
-  //         displayName: userAuth.displayName,
-  //         photoUrl: userAuth.photoURL
-  //       }))
+  const dispatch = useDispatch()
+  useEffect(() => {
+    auth.onAuthStateChanged(userAuth => {
+      if (userAuth) {
+        dispatch(login({
+          email: userAuth.email,
+          uid: userAuth.uid,
+          displayName: userAuth.displayName,
+          photoUrl: userAuth.photoURL
+        }))
 
-  //     } else {
-  //       dispatch(logout())
+      } else {
+        dispatch(logout())
 
-  //     }
-  //   })
-  // })
+      }
+    })
+  }, [])
   return (
+
+
     <div className="App">
-
       <Header />
+      {!user ? (<Login />) : (
 
-      {!user ? (<Login />) : (<div className="app_body">
 
-        <Sidebar />
-        <Feed />
-      </div>
+        <div className="app_body">
+
+          <Sidebar />
+          <Feed />
+          <Widget />
+
+        </div>
       )}
 
 

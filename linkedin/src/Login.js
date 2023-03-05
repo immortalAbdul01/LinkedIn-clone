@@ -11,6 +11,15 @@ function Login() {
     const dispatch = useDispatch()
     const loginToApp = (e) => {
         e.preventDefault()
+        auth.signInWithEmailAndPassword(email, password).then((userAuth) => {
+            dispatch(login({
+                email: userAuth.user.email,
+                uid: userAuth.user.uid,
+                displayName: userAuth.user.displayName,
+                picUrl: userAuth.user.photoURL
+            }))
+        }).catch(err => alert(err))
+
     }
     const register = () => {
         if (!name) {
@@ -43,11 +52,11 @@ function Login() {
                 } type="text" placeholder='picture profile url' />
                 <input value={email} onChange={e => setEmail(e.target.value)} type="email" placeholder='enter email' />
                 <input value={password} onChange={e => setPassword(e.target.value)} type="password" name="" id="" placeholder='password' />
-                <button type='submit' onClick={Login}>Sign In</button>
             </form>
-            <p>Not a LinkedIn member shame on you{" "}
+            <button onClick={register}>Sign In</button>
+            <p>Already a member then just enter email and password and click here{" "}
 
-                <span className='login_register' onClick={register}>Register now</span>
+                <span className='login_register' onClick={loginToApp}>Log in</span>
             </p>
         </div>
     )
